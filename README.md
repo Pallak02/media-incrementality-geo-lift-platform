@@ -2,76 +2,110 @@
 
 ## Overview
 
-This project is a marketing measurement platform designed to estimate the true incremental impact of media campaigns across geographic markets.
+This project is a marketing measurement platform designed to estimate the incremental impact of media campaigns across geographic markets.
 
-The platform applies causal inference and marketing measurement methodologies to answer a critical business question:
+It uses a marketing measurement dataset from Meta Robyn and extends it with a geo-experiment framework to analyze whether campaign activity caused incremental revenue lift.
 
-**Did the campaign actually generate incremental conversions, or would those conversions have happened anyway?**
+The platform answers the business question:
+
+**Did the campaign actually generate incremental revenue, or would that revenue have happened anyway?**
 
 ---
 
 ## Business Problem
 
-Marketing teams invest millions of dollars in advertising campaigns but often struggle to determine whether observed conversion increases were actually caused by marketing efforts.
+Marketing teams often observe revenue increases after campaign launches, but revenue growth alone does not prove that the campaign caused the increase.
 
-This project simulates a geo-based media experiment where selected treatment markets receive additional advertising spend while control markets do not.
+This project creates treatment and control geographic markets to estimate the causal impact of a simulated media campaign.
 
-The objective is to estimate:
+The objective is to measure:
 
-- Incremental Conversions
-- Conversion Lift
-- Incremental CPA
 - Incremental Revenue
-- Geographic Performance
-- Budget Reallocation Opportunities
+
+- Revenue Lift %
+
+- Treatment vs Control Performance
+
+- Geo-Level Campaign Impact
+
+- Synthetic Counterfactual Performance
+
+- Budget Optimization Opportunities
 
 ---
 
 ## Methodologies
 
-### Geo Experiments
+### Geo Experiment Design
 
-Compare treatment and control markets before and after campaign launch.
+Treatment markets receive campaign exposure, while control markets do not.
 
-### Difference-in-Differences (DiD)
+### Difference-in-Differences
 
-Estimate causal impact by comparing conversion changes between treatment and control groups.
+Estimates campaign impact by comparing revenue changes in treatment markets against revenue changes in control markets before and after campaign launch.
 
 ### Synthetic Control
 
-Construct a counterfactual estimate of campaign performance in the absence of marketing intervention.
-
-### Marketing Measurement
-
-Evaluate conversion lift, media efficiency, and budget optimization opportunities.
+Builds a weighted combination of untreated control markets to estimate what the treatment market would have looked like without the campaign.
 
 ---
 
-## Planned Features
+## Current Results
 
-- KPI Engine
-- Geo Lift Analysis
-- Difference-in-Differences Modeling
-- Synthetic Control Analysis
-- Conversion Lift Measurement
-- Budget Recommendation Engine
-- Streamlit Dashboard
-- Executive Summary Generation
+### Difference-in-Differences
+
+- Incremental Revenue Per Week: **$303,691**
+
+- Revenue Lift: **15.21%**
+
+- Total Incremental Revenue: **$31.58M**
+
+### Synthetic Control
+
+- Treatment Market: **California**
+
+- Estimated Incremental Lift: **$329,252**
+
+- Lift: **15.00%**
+
+Both methods recover approximately 15% lift, validating the geo-lift measurement framework.
 
 ---
 
 ## Tech Stack
 
 - Python
+
 - Pandas
+
 - NumPy
-- Statsmodels
+
 - Scikit-Learn
+
+- Statsmodels
+
+- Matplotlib
+
 - Streamlit
+
 - Plotly
 
 ---
 
-## Project Status
+## Project Structure
 
-In Progress
+```text
+
+Data/
+
+src/
+
+dashboard/
+
+reports/
+
+notebooks/
+
+[README.md](http://README.md)
+
+requirements.txt
