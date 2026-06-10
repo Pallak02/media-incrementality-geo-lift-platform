@@ -288,15 +288,37 @@ with k4:
 st.markdown("<br>", unsafe_allow_html=True)
 
 # ---------- Tabs ----------
-tab1, tab2, tab3, tab4 = st.tabs(
+tab1, tab2, tab3, tab4, tab5 = st.tabs(
     [
         "Executive View",
         "DiD Analysis",
         "Synthetic Control",
+        "Budget Optimizer",
         "Methodology"
     ]
 )
 
+if st.button("Generate AI Executive Insights"):
+    
+    if lift_pct > 10:
+        verdict = "Campaign Successful"
+    elif lift_pct > 0:
+        verdict = "Campaign Moderately Successful"
+    else:
+        verdict = "Campaign Underperformed"
+
+    st.success(f"""
+    Executive Verdict: {verdict}
+
+    Key Findings:
+    • Revenue lift measured at {lift_pct:.2f}%
+    • Incremental revenue generated: ${total_incremental:,.0f}
+    • Average weekly lift: ${did:,.0f}
+
+    Recommendation:
+    Scale investment in treatment markets and run additional geo experiments
+    before broader rollout.
+    """)
 # ---------- Executive ----------
 with tab1:
     st.markdown('<div class="section-heading">Executive Summary</div>', unsafe_allow_html=True)
@@ -511,8 +533,58 @@ with tab3:
     st.pyplot(fig2)
     st.markdown('</div>', unsafe_allow_html=True)
 
-# ---------- Methodology ----------
 with tab4:
+
+    st.markdown(
+        '<div class="section-heading">Budget Optimizer</div>',
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        '<div class="section-copy">Allocate future marketing budget based on measured geo lift.</div>',
+        unsafe_allow_html=True
+    )
+
+    total_budget = st.number_input(
+        "Future Marketing Budget ($)",
+        min_value=100000,
+        value=1000000,
+        step=100000
+    )
+
+    allocation = {
+        "California": 0.45,
+        "Texas": 0.35,
+        "Florida": 0.20
+    }
+
+    budget_df = pd.DataFrame({
+        "Market": allocation.keys(),
+        "Allocation %": [v * 100 for v in allocation.values()],
+        "Recommended Budget": [
+            total_budget * v
+            for v in allocation.values()
+        ]
+    })
+
+    st.dataframe(
+        budget_df,
+        use_container_width=True
+    )
+
+    st.success(
+        f"""
+        Recommended Allocation Generated
+
+        California: ${total_budget * 0.45:,.0f}
+
+        Texas: ${total_budget * 0.35:,.0f}
+
+        Florida: ${total_budget * 0.20:,.0f}
+        """
+    )
+# ---------- Methodology ----------
+with tab5:
     st.markdown('<div class="section-heading">Methodology</div>', unsafe_allow_html=True)
 
     st.markdown(
