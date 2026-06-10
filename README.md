@@ -1,111 +1,232 @@
-# Media Incrementality & Geo Lift Analytics Platform
+# 📈 AI Marketing Measurement Platform
+
+### Estimating Incremental Revenue Using Geo Experiments, Difference-in-Differences, and Synthetic Control
+
+[Live Demo](YOUR_STREAMLIT_URL_HERE) | [GitHub Repository](YOUR_GITHUB_URL_HERE)
+
+---
 
 ## Overview
 
-This project is a marketing measurement platform designed to estimate the incremental impact of media campaigns across geographic markets.
+Marketing teams invest millions of dollars in advertising campaigns but often struggle to answer a critical question:
 
-It uses a marketing measurement dataset from Meta Robyn and extends it with a geo-experiment framework to analyze whether campaign activity caused incremental revenue lift.
+> Did the campaign actually generate incremental revenue, or would those sales have happened anyway?
 
-The platform answers the business question:
+This project is an AI-powered marketing measurement platform designed to estimate the true causal impact of advertising campaigns using geo experiments and modern causal inference techniques.
 
-**Did the campaign actually generate incremental revenue, or would that revenue have happened anyway?**
+The platform combines:
+
+- Geo Experiment Design
+- Difference-in-Differences (DiD)
+- Synthetic Control Modeling
+- Executive Insight Generation
+- Budget Optimization Recommendations
+
+The goal is to help marketing decision-makers move beyond attribution and measure true business impact.
 
 ---
 
 ## Business Problem
 
-Marketing teams often observe revenue increases after campaign launches, but revenue growth alone does not prove that the campaign caused the increase.
+Traditional marketing dashboards report performance metrics such as:
 
-This project creates treatment and control geographic markets to estimate the causal impact of a simulated media campaign.
+- Revenue
+- Clicks
+- Conversions
+- ROAS
 
-The objective is to measure:
+However, these metrics do not necessarily measure causality.
 
-- Incremental Revenue
+A campaign may coincide with increased revenue without actually causing it.
 
-- Revenue Lift %
+To solve this problem, this project simulates a geo-based marketing experiment where selected markets receive additional advertising spend while control markets do not.
 
-- Treatment vs Control Performance
+The platform estimates:
 
-- Geo-Level Campaign Impact
+✅ Incremental Revenue
 
-- Synthetic Counterfactual Performance
+✅ Revenue Lift
 
-- Budget Optimization Opportunities
+✅ Counterfactual Performance
 
----
-
-## Methodologies
-
-### Geo Experiment Design
-
-Treatment markets receive campaign exposure, while control markets do not.
-
-### Difference-in-Differences
-
-Estimates campaign impact by comparing revenue changes in treatment markets against revenue changes in control markets before and after campaign launch.
-
-### Synthetic Control
-
-Builds a weighted combination of untreated control markets to estimate what the treatment market would have looked like without the campaign.
+✅ Budget Allocation Recommendations
 
 ---
 
-## Current Results
+## Methodology
 
-### Difference-in-Differences
+### 1. Geo Experiment Design
 
-- Incremental Revenue Per Week: **$303,691**
+Markets are divided into:
+
+| Treatment Markets | Control Markets |
+|------------------|----------------|
+| California | Arizona |
+| Texas | Nevada |
+| Florida | Colorado |
+
+Treatment markets receive the campaign intervention while control markets serve as the baseline.
+
+---
+
+### 2. Difference-in-Differences (DiD)
+
+Difference-in-Differences estimates causal impact by comparing:
+
+```text
+(Treatment After - Treatment Before)
+-
+(Control After - Control Before)
+```
+
+This removes underlying market trends and isolates campaign impact.
+
+#### Results
 
 - Revenue Lift: **15.21%**
+- Incremental Revenue: **$31.6M**
+- Weekly Incremental Revenue: **$303K**
 
-- Total Incremental Revenue: **$31.58M**
+---
 
-### Synthetic Control
+### 3. Synthetic Control
 
-- Treatment Market: **California**
+Synthetic Control constructs a counterfactual version of a treatment market using weighted combinations of untreated markets.
 
-- Estimated Incremental Lift: **$329,252**
+This answers:
 
-- Lift: **15.00%**
+> What would California's revenue have looked like if the campaign had never run?
 
-Both methods recover approximately 15% lift, validating the geo-lift measurement framework.
+The gap between actual and synthetic performance represents incremental impact.
+
+#### Results
+
+- Synthetic Control Lift: **15.0%**
+- Incremental Revenue: **$329K per week**
+
+---
+
+## Dashboard Features
+
+### Executive Summary
+
+Automatically translates statistical results into business recommendations.
+
+### AI Executive Insights
+
+Generates:
+
+- Campaign verdict
+- Key findings
+- Revenue lift interpretation
+- Strategic recommendations
+
+### Difference-in-Differences Analysis
+
+Visualizes treatment and control market performance before and after campaign launch.
+
+### Synthetic Control Analysis
+
+Compares actual market performance against a generated counterfactual baseline.
+
+### Budget Optimizer
+
+Recommends future budget allocation across markets based on measured incremental lift.
+
+---
+
+## Dashboard Screenshots
+
+### Executive View
+
+![Executive View](assets/executive_view.png)
+
+---
+
+### Difference-in-Differences Analysis
+
+![DiD Analysis](assets/did_analysis.png)
+
+---
+
+### Synthetic Control Analysis
+
+![Synthetic Control](assets/synthetic_control.png)
 
 ---
 
 ## Tech Stack
 
+### Analytics
+
 - Python
-
 - Pandas
-
 - NumPy
-
 - Scikit-Learn
 
-- Statsmodels
+### Causal Inference
 
-- Matplotlib
+- Difference-in-Differences
+- Synthetic Control
+
+### Visualization
 
 - Streamlit
+- Matplotlib
 
-- Plotly
+### Product Layer
+
+- Executive Insight Generation
+- Budget Recommendation Engine
 
 ---
 
-## Project Structure
+## Results
 
-```text
+| Metric | Value |
+|----------|----------|
+| Revenue Lift | 15.21% |
+| Incremental Revenue | $31.6M |
+| Weekly Incremental Revenue | $303K |
+| Synthetic Control Lift | 15.0% |
 
-Data/
+---
 
-src/
+## Key Learnings
 
-dashboard/
+Through this project I learned how to:
 
-reports/
+- Design geo-based marketing experiments
+- Estimate causal impact using Difference-in-Differences
+- Build Synthetic Control counterfactual models
+- Translate statistical findings into business recommendations
+- Build and deploy analytics applications using Streamlit
+- Connect marketing measurement with executive decision-making
 
-notebooks/
+---
 
-[README.md](http://README.md)
+## Future Improvements
 
-requirements.txt
+- Integration with Google Ads API
+- Integration with Meta Ads API
+- Marketing Mix Modeling (MMM)
+- Uplift Modeling
+- LLM-powered insight generation using OpenAI
+- Automated budget reallocation recommendations
+- Multi-touch attribution comparison
+
+---
+
+## Author
+
+**Palak Wadhwa**
+
+M.S. Data Science, University of Maryland
+
+Interested in:
+- Marketing Analytics
+- Marketing Science
+- Growth Analytics
+- Product Analytics
+- Causal Inference
+- AI Applications in Marketing
