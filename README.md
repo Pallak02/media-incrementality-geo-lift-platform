@@ -139,7 +139,7 @@ Recommends future budget allocation across markets based on measured incremental
 
 ### Executive View
 
-![Executive View](assets/executive_view.png)
+![Executive View](reports/ExecutiVeview.png)
 
 ---
 
