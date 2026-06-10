@@ -2,7 +2,7 @@
 
 ### Estimating Incremental Revenue Using Geo Experiments, Difference-in-Differences, and Synthetic Control
 
-[Live Demo](YOUR_STREAMLIT_URL_HERE) | [GitHub Repository](YOUR_GITHUB_URL_HERE)
+[Live Demo](https://marketing-incrementality-platform.streamlit.app/) | [GitHub Repository](https://github.com/Pallak02/media-incrementality-geo-lift-platform)
 
 ---
 
